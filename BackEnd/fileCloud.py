@@ -10,7 +10,7 @@ con = createConnection()
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile):
     file_location = f"fileStorage/{file.filename}"
-    insertFileNames(con, (file_location))
+    insertFileNames(con, [[file.filename]])
     with open(file_location, "wb+") as file_object:
         file_object.write(file.file.read())
     return {"info": f"file '{file.filename}' saved at '{file_location}'"}

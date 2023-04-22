@@ -57,6 +57,7 @@ def showAllFileNames(connection):
 
 
 con = createConnection()
+#updateTable(con)
 print(showAllFileNames(con))
 closeConnection(con)
 
