@@ -2,10 +2,25 @@ from typing import Annotated
 from bdReq import *
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 con = createConnection()
 
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile):
