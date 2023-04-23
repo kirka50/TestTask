@@ -1,11 +1,10 @@
 from typing import Annotated
 from bdReq import *
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-con = createConnection()
 
 origins = [
     "*"
@@ -20,10 +19,13 @@ app.add_middleware(
 )
 
 
+
+
+
 @app.post("/uploadfile/")
-async def create_upload_file(file: UploadFile, filename: str):
+async def create_upload_file(file: Annotated[UploadFile, File], filename: Annotated[str, Form]):
     file_location = f"fileStorage/{filename}"
-    insertFileNames(con, [[filename]])
+    insertFileNames([[filename]])
     with open(file_location, "wb+") as file_object:
         file_object.write(file.file.read())
     return {"info": f"file '{filename}' saved at '{file_location}'"}
@@ -31,7 +33,7 @@ async def create_upload_file(file: UploadFile, filename: str):
 
 @app.get("/listAll/")
 async def list_all_files_names():
-    data = showAllFileNames(con)
+    data = showAllFileNames()
     return {"fileNames": data}
 
 
@@ -42,4 +44,4 @@ def download_file(file_name):
 
 @app.get("/updateBase")
 def update_base():
-    updateTable(con)
+    updateTable()
