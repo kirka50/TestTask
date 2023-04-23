@@ -22,6 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile):
     file_location = f"fileStorage/{file.filename}"
@@ -39,4 +40,9 @@ async def list_all_files_names():
 
 @app.get("/downloadFile/{file_name}")
 def download_file(file_name):
-  return FileResponse(path=f"fileStorage/{file_name}", filename=file_name, media_type='multipart/form-data')
+    return FileResponse(path=f"fileStorage/{file_name}", filename=file_name, media_type='multipart/form-data')
+
+
+@app.get("/updateBase")
+def update_base():
+    updateTable(con)
