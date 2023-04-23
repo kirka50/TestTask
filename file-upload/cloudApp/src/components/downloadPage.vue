@@ -25,7 +25,10 @@ export default {
     },
     sendFile(){
       this.file.name = this.filename
-      axios.post('http://kaikane.ru/uploadfile/', this.file, {
+      axios.post('http://kaikane.ru/uploadfile/', {
+        file: this.file,
+        filename: this.filename
+      }, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }})

@@ -21,12 +21,12 @@ app.add_middleware(
 
 
 @app.post("/uploadfile/")
-async def create_upload_file(file: UploadFile):
-    file_location = f"fileStorage/{file.filename}"
-    insertFileNames(con, [[file.filename]])
+async def create_upload_file(file: UploadFile, filename: str):
+    file_location = f"fileStorage/{filename}"
+    insertFileNames(con, [[filename]])
     with open(file_location, "wb+") as file_object:
         file_object.write(file.file.read())
-    return {"info": f"file '{file.filename}' saved at '{file_location}'"}
+    return {"info": f"file '{filename}' saved at '{file_location}'"}
 
 
 @app.get("/listAll/")
