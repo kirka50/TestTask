@@ -2,9 +2,7 @@
    <div> <p>Загрузка файлов: <file-select v-model="file" @updateParent="onFileChoose"></file-select></p> </div>
     <template v-if="file">
       <div>
-        <input type="text" v-model="filename" :placeholder="file.file.name">
         <button @click="sendFile">Отправить</button>
-        <p>{{filename}}</p>
       </div>
     </template>
 </template>
@@ -24,14 +22,9 @@ export default {
       console.log(this.file)
     },
     sendFile(){
-      let fd = new FormData();
-      fd.append("filename", this.filename)
-      fd.append("file", this.file)
-      axios.post('http://kaikane.ru/uploadfile/', {
-        fd
-      }, {
+      axios.post('http://kaikane.ru/uploadfile/', this.file, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+
         }})
           .then(response => {
             console.log(response)
