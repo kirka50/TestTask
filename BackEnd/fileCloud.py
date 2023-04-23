@@ -19,10 +19,7 @@ app.add_middleware(
 )
 
 
-
-
-
-@app.post("/uploadfile/")
+@app.post("/uploadfile/{filename}")
 async def create_upload_file(file: Annotated[UploadFile, File], filename: Annotated[str, Form]):
     file_location = f"fileStorage/{filename}"
     insertFileNames([[filename]])

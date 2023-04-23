@@ -24,11 +24,11 @@ export default {
       console.log(this.file)
     },
     sendFile(){
-      this.file.name = this.filename
+      let fd = new FormData();
+      fd.append("filename", this.filename)
+      fd.append("file", this.file)
       axios.post('http://kaikane.ru/uploadfile/', {
-        "filename": this.filename,
-        "file": this.file
-
+        fd
       }, {
         headers: {
           'Content-Type': 'multipart/form-data'
