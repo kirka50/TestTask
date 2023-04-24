@@ -27,7 +27,7 @@ methods: {
           let fileLink = document.createElement('a');
 
           fileLink.href = fileURL;
-          fileLink.setAttribute('download', 'file.pdf');
+          fileLink.setAttribute('download', item[0]);
           document.body.appendChild(fileLink);
 
           fileLink.click();
