@@ -34,7 +34,7 @@ async def list_all_files_names():
     return {"fileNames": data}
 
 
-@app.get("/downloadFile/{file_name}")
+@app.get("/downloadFile/")
 def download_file(file_name):
     return FileResponse(path=f"fileStorage/{file_name}", filename=file_name, media_type='multipart/form-data')
 
