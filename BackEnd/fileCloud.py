@@ -26,7 +26,8 @@ async def create_upload_file(file: Annotated[UploadFile, File], filename: Annota
     insertFileNames([[filename]])
     with open(file_location, "wb+") as file_object:
         file_object.write(file.file.read())
-    return {"info": f"file '{filename}' saved at '{file_location}'"}
+    return {"info": f"file '{filename}' saved at '{file_location}'",
+            "filename": filename}
 
 
 @app.get("/listAll/")
