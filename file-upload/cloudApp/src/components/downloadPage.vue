@@ -2,8 +2,6 @@
    <div> <p>Загрузка файлов: <file-select v-model="file" @updateParent="onFileChoose"></file-select></p> </div>
     <template v-if="file">
       <div>
-        <input type="text" v-model="filename" placeholder="file.name">
-        <p>{{filename}}</p>
         <button @click="sendFile">Отправить</button>
       </div>
     </template>
