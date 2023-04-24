@@ -8,8 +8,8 @@ import axios from "axios";
 export default {
   name: "fileDownload",
 methods: {
-  getAllFileNames() {
-    axios.get("http://kaikane.ru/listAll/")
+  async getAllFileNames() {
+  await axios.get("http://kaikane.ru/listAll/")
         .then(response => {
           this.fileData = response
         })
@@ -17,10 +17,10 @@ methods: {
           console.log(error.response)
         })
   },
-  downloadFileByName(item)
+ async downloadFileByName(item)
   {
     console.log(item[0])
-    axios.get("http://kaikane.ru/downloadFile/",{params: {file_name: item[0]}})
+    await axios.get("http://kaikane.ru/downloadFile/",{params: {file_name: item[0]}})
         .then(response => {
           console.log(response)
           let fileURL = window.URL.createObjectURL(new Blob([response.data]));

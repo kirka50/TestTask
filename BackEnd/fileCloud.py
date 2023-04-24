@@ -21,6 +21,7 @@ app.add_middleware(
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: Annotated[UploadFile, File], filename: Annotated[str | None, Header] = None):
+    print(filename)
     file_location = f"fileStorage/{filename}"
     insertFileNames([[filename]])
     with open(file_location, "wb+") as file_object:
