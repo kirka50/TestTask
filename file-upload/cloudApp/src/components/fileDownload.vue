@@ -20,7 +20,9 @@ methods: {
  async downloadFileByName(item)
   {
     console.log(item[0])
-    await axios.get("http://kaikane.ru:5000/downloadFile/", item[0])
+    await axios.get("http://kaikane.ru:5000/downloadFile/", {
+      params: {file_name: item[0]}
+    })
         .then(response => {
           console.log(response)
           let fileURL = window.URL.createObjectURL(new Blob([response.data]));
