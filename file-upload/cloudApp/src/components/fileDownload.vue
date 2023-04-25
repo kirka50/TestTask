@@ -21,7 +21,7 @@ methods: {
   {
     console.log(item[0])
     await axios.get("http://kaikane.ru:5000/downloadFile/", {
-      params: {file_name: item[0]}
+      params: {'file_name': item[0]}
     })
         .then(response => {
           console.log(response)
