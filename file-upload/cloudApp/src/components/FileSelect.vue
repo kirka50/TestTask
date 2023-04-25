@@ -1,8 +1,8 @@
 <template>
   <label class="file-select">
     <div class="select-button">
-      <span v-if="file" >Selected File: {{ file.name }}</span>
-      <span v-else>Select File</span>
+      <span v-if="file" >Выбранный файл: {{ file.name }}</span>
+      <span v-else>Выберите файл</span>
     </div>
     <input type="file" id="file" ref="file" v-on:change="handleFileUpload"/>
   </label>
