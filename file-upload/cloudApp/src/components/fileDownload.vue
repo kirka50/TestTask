@@ -9,7 +9,7 @@ export default {
   name: "fileDownload",
 methods: {
   async getAllFileNames() {
-  await axios.get("http://kaikane.ru/listAll/")
+  await axios.get("http://kaikane.ru:5000/listAll/")
         .then(response => {
           this.fileData = response
         })
@@ -20,7 +20,7 @@ methods: {
  async downloadFileByName(item)
   {
     console.log(item[0])
-    await axios.get("http://kaikane.ru/downloadFile/",{params: {file_name: item[0]}})
+    await axios.get("http://kaikane.ru:5000/downloadFile/",{params: {file_name: item[0]}})
         .then(response => {
           console.log(response)
           let fileURL = window.URL.createObjectURL(new Blob([response.data]));

@@ -23,7 +23,7 @@ export default {
     },
    async sendFile(){
       console.log(this.filename)
-      await axios.post('http://kaikane.ru/uploadfile/', this.file, {
+      await axios.post('http://kaikane.ru:5000/uploadfile/', this.file, {
         headers: {
           "filename": this.filename,
           'Content-Type': 'multipart/form-data'
