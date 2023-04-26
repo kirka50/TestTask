@@ -35,6 +35,7 @@ export default {
             console.log('errr')
           })
       console.log(this.file.name)
+     this.file = null
     }
 
   },
